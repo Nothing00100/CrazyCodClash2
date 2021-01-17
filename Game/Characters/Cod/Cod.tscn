@@ -1,0 +1,127 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Misc/greyscale.shader" type="Shader" id=1]
+[ext_resource path="res://Game/Characters/Cod/ClotWin.wav" type="AudioStream" id=2]
+[ext_resource path="res://Game/Parent/Character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game/Characters/Cod/cod.png" type="Texture" id=4]
+[ext_resource path="res://Game/Characters/Cod/ClotSpawn.wav" type="AudioStream" id=5]
+[ext_resource path="res://Game/Characters/Cod/ClotShoot.wav" type="AudioStream" id=6]
+[ext_resource path="res://Game/Characters/Cod/ClotLaser.wav" type="AudioStream" id=7]
+[ext_resource path="res://Game/Characters/Cod/ClotBullet.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Game/Characters/Cod/ClotLaserIcon.png" type="Texture" id=9]
+[ext_resource path="res://Game/Characters/Cod/ClotLifeSteal.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Game/Characters/Cod/ClotLifeStealIcon.png" type="Texture" id=11]
+[ext_resource path="res://Game/Characters/Cod/ClotBigBullet.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Game/Characters/Cod/ClotDeath.wav" type="AudioStream" id=13]
+[ext_resource path="res://Game/Characters/Cod/Cod.gd" type="Script" id=14]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 10.5499
+height = 82.7007
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/enabled = false
+
+[sub_resource type="StyleBoxFlat" id=3]
+resource_local_to_scene = true
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.996078, 0.705882, 0, 1 )
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id=4]
+resource_local_to_scene = true
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.996078, 0.705882, 0, 1 )
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 313.561, 10 )
+
+[node name="Clot" instance=ExtResource( 3 )]
+script = ExtResource( 14 )
+maxHealth = 70
+maxMoveSpeed = 400.0
+attack2AmmoCost = 3
+reloadRate = 1.6
+ability1Cooldown = 5.0
+ability2Cooldown = 30.0
+killLines = PoolStringArray( "res://Game/Characters/Clot/ClotKill1.wav", "res://Game/Characters/Clot/ClotKill2.wav", "res://Game/Characters/Clot/ClotKill3.wav", "res://Game/Characters/Clot/ClotKill4.wav", "res://Game/Characters/Clot/ClotKill5.wav" )
+NormBullet = ExtResource( 8 )
+BigBullet = ExtResource( 12 )
+LifeSteal = ExtResource( 10 )
+
+[node name="CollisionShape2D" parent="." index="0"]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Graphics" parent="." index="1"]
+material = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Graphics" index="0"]
+use_parent_material = true
+position = Vector2( 0.5, 0 )
+scale = Vector2( 0.136363, 0.136363 )
+texture = ExtResource( 4 )
+
+[node name="Ability1" parent="UI/Main/CenterContainer2/VBoxContainer/Abilities/HBoxContainer" index="0"]
+custom_styles/panel = SubResource( 3 )
+icon = ExtResource( 11 )
+
+[node name="Ability2" parent="UI/Main/CenterContainer2/VBoxContainer/Abilities/HBoxContainer" index="1"]
+custom_styles/panel = SubResource( 4 )
+icon = ExtResource( 9 )
+
+[node name="Tag" parent="." index="5"]
+position = Vector2( 0, 50 )
+
+[node name="Death" parent="." index="6"]
+stream = ExtResource( 13 )
+
+[node name="Spawn" parent="." index="7"]
+stream = ExtResource( 5 )
+
+[node name="Win" parent="." index="8"]
+stream = ExtResource( 2 )
+
+[node name="Laser" type="Area2D" parent="." index="10"]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Laser" index="0"]
+position = Vector2( 312, 0 )
+shape = SubResource( 5 )
+
+[node name="Line" type="Line2D" parent="Laser" index="1"]
+visible = false
+points = PoolVector2Array( 0, 0, 0, 0, 624, 0 )
+width = 20.0
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Tell" type="Line2D" parent="Laser" index="2"]
+visible = false
+points = PoolVector2Array( 0, 0, 0, 0, 624, 0 )
+width = 20.0
+default_color = Color( 1, 0.458824, 0.458824, 0.513726 )
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="." index="11"]
+stream = ExtResource( 6 )
+volume_db = 2.0
+
+[node name="LaserShoot" type="AudioStreamPlayer2D" parent="." index="12"]
+stream = ExtResource( 7 )
+volume_db = 2.0

@@ -1,0 +1,229 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Game/Parent/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/Characters/Salmon/Salmon.gd" type="Script" id=2]
+[ext_resource path="res://Game/Characters/Salmon/NotedBullet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game/Characters/Salmon/Boom.png" type="Texture" id=4]
+[ext_resource path="res://Misc/greyscale.shader" type="Shader" id=5]
+[ext_resource path="res://Game/Characters/Salmon/NotedWin_Sound.wav" type="AudioStream" id=6]
+[ext_resource path="res://Game/Characters/Salmon/NotedDeath_Sound.wav" type="AudioStream" id=7]
+[ext_resource path="res://Game/Characters/Salmon/NotedSpawn_sound.wav" type="AudioStream" id=8]
+[ext_resource path="res://Game/Characters/Salmon/Explosion.wav" type="AudioStream" id=9]
+[ext_resource path="res://Game/Characters/Salmon/salmon.png" type="Texture" id=10]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 18.2799
+height = 75.4012
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/enabled = false
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.0114943, 0.490909 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.165563, 0.317881, 0.476821, 0.675497, 0.986755, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 0.976074, 0.792751, 0.156324, 1, 0.62653, 1, 0.136719, 1, 0.0859375, 0.504585, 1, 1, 0.807617, 0, 1, 1, 0.929412, 0.631373, 1, 0, 1, 1, 1, 0 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+resource_local_to_scene = true
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.996078, 0.705882, 0, 1 )
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StreamTexture" id=6]
+load_path = "res://.import/BrokenHalo.png-32311a6f202bc7eee81f20705d7cc9e4.stex"
+
+[sub_resource type="StyleBoxFlat" id=7]
+resource_local_to_scene = true
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.996078, 0.705882, 0, 1 )
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StreamTexture" id=8]
+load_path = "res://.import/BrokenDemon.png-cc4aec4d0e72d3a412a2fd85e16f1486.stex"
+
+[sub_resource type="Animation" id=9]
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.99, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.111662, 0.119404 ), Vector2( 0.334871, 0.358089 ), Vector2( 0.334871, 0.358089 ), Vector2( 0.112, 0.119 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.99, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.94902, 0.839216, 0.164706, 0.54902 ), Color( 0.94902, 0.839216, 0.164706, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D:shape:radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.99, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 21.7518, 61.8598, 61.8598, 21.752 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionShape2D:shape:height")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4, 0.99, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 30.7029, 83.013, 83.013, 30.703 ]
+}
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 390.525
+
+[sub_resource type="Animation" id=11]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.7, 0.7 ) ]
+}
+
+[node name="Noted" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+maxHealth = 5
+acceleration = 1.0
+deceleration = 1.0
+maxAmmo = 2
+attack2AmmoCost = 2
+ability1Cooldown = 5.0
+ability2Cooldown = 30.0
+killLines = PoolStringArray( "res://Game/Characters/Noted/NotedKill_1.wav", "res://Game/Characters/Noted/NotedKill_2.wav" )
+Bullet = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( -0.28064, -0.529732 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Graphics" parent="." index="1"]
+material = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Graphics" index="0"]
+use_parent_material = true
+position = Vector2( 0.464829, -0.619041 )
+scale = Vector2( 0.111662, 0.119404 )
+texture = ExtResource( 10 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="FUN" type="CPUParticles2D" parent="Graphics" index="1"]
+position = Vector2( 0, -25 )
+emitting = false
+amount = 20
+speed_scale = 1.5
+explosiveness = 0.1
+randomness = 0.09
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+orbit_velocity = 1.0
+orbit_velocity_curve = SubResource( 3 )
+scale_amount = 2.0
+color_ramp = SubResource( 4 )
+
+[node name="Main" parent="UI" index="0"]
+margin_left = 11.2599
+margin_right = -8.74011
+
+[node name="CenterContainer2" parent="UI/Main" index="1"]
+margin_left = 2.51984
+margin_top = -80.2599
+margin_right = 2.51984
+margin_bottom = 16.7401
+
+[node name="Ability1" parent="UI/Main/CenterContainer2/VBoxContainer/Abilities/HBoxContainer" index="0"]
+custom_styles/panel = SubResource( 5 )
+icon = SubResource( 6 )
+
+[node name="Ability2" parent="UI/Main/CenterContainer2/VBoxContainer/Abilities/HBoxContainer" index="1"]
+custom_styles/panel = SubResource( 7 )
+icon = SubResource( 8 )
+
+[node name="Death" parent="." index="6"]
+stream = ExtResource( 7 )
+volume_db = -20.0
+
+[node name="Spawn" parent="." index="7"]
+stream = ExtResource( 8 )
+volume_db = -20.0
+
+[node name="Win" parent="." index="8"]
+stream = ExtResource( 6 )
+volume_db = -20.0
+
+[node name="Kill" parent="." index="9"]
+volume_db = -20.0
+
+[node name="Animation" type="AnimationPlayer" parent="." index="12"]
+anims/Ascension = SubResource( 9 )
+
+[node name="Explosion" type="Area2D" parent="." index="13"]
+collision_layer = 32
+
+[node name="Sprite" type="Sprite" parent="Explosion" index="0"]
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion" index="1"]
+shape = SubResource( 10 )
+
+[node name="Animation" type="AnimationPlayer" parent="Explosion" index="2"]
+playback_speed = 3.0
+anims/Boom = SubResource( 11 )
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." index="14"]
+stream = ExtResource( 9 )
+pitch_scale = 2.0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ClotDeath.wav-2c19deddcd1402577d9393bb5c65113b.sample"
+
+[deps]
+
+source_file="res://Game/Characters/Cod/ClotDeath.wav"
+dest_files=[ "res://.import/ClotDeath.wav-2c19deddcd1402577d9393bb5c65113b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

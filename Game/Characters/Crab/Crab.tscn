@@ -1,0 +1,135 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Misc/greyscale.shader" type="Shader" id=1]
+[ext_resource path="res://Game/Characters/Crab/WillSmithBall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Characters/Crab/ThatsHot.wav" type="AudioStream" id=3]
+[ext_resource path="res://Game/Characters/Crab/Ahaha.wav" type="AudioStream" id=4]
+[ext_resource path="res://Game/Characters/Crab/Teleport.wav" type="AudioStream" id=5]
+[ext_resource path="res://Game/Characters/Crab/Lamp.png" type="Texture" id=6]
+[ext_resource path="res://Game/Characters/Crab/MagicCarpet.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Game/Characters/Crab/crab.jpg" type="Texture" id=8]
+[ext_resource path="res://Game/Characters/Crab/Crab.gd" type="Script" id=9]
+[ext_resource path="res://Game/Characters/Crab/Yarr3.wav" type="AudioStream" id=10]
+[ext_resource path="res://Game/Characters/Crab/Yarr2.wav" type="AudioStream" id=11]
+[ext_resource path="res://Game/Characters/Crab/WillDust.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Game/Parent/Character.tscn" type="PackedScene" id=13]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 56.6052
+height = 82.0815
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 32.5952
+height = 36.9582
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/enabled = false
+
+[sub_resource type="StyleBoxFlat" id=4]
+resource_local_to_scene = true
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.996078, 0.705882, 0, 1 )
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StreamTexture" id=5]
+load_path = "res://.import/Icon1.png-32d1f4abf5c97740dc46e313c2ffcf2c.stex"
+
+[sub_resource type="StyleBoxFlat" id=6]
+resource_local_to_scene = true
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.996078, 0.705882, 0, 1 )
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StreamTexture" id=7]
+load_path = "res://.import/JAH.png-0f21704d3839fc3af991d2bf74989af5.stex"
+
+[node name="Will Smith" instance=ExtResource( 13 )]
+script = ExtResource( 9 )
+maxHealth = 120
+maxMoveSpeed = 350.0
+maxAmmo = 6
+attack2AmmoCost = 2
+reloadRate = 1.2
+ability1Cooldown = 10.0
+ability2Cooldown = 12.0
+killLines = PoolStringArray( "res://Game/Characters/Will Smith/Yarr.wav" )
+Ball = ExtResource( 2 )
+MagicCarpet = ExtResource( 7 )
+Dust = ExtResource( 12 )
+
+[node name="LampCollision" type="CollisionShape2D" parent="." index="0"]
+visible = false
+rotation = 1.57079
+shape = SubResource( 1 )
+disabled = true
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, -4.77046 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Graphics" parent="." index="2"]
+material = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Graphics" index="0"]
+use_parent_material = true
+position = Vector2( -1.78355, 11.4178 )
+scale = Vector2( 0.176678, 0.176678 )
+texture = ExtResource( 8 )
+offset = Vector2( 20, -100 )
+
+[node name="Lamp" type="Sprite" parent="Graphics" index="1"]
+visible = false
+position = Vector2( 10, 0 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 6 )
+flip_h = true
+
+[node name="CenterContainer" parent="UI/Main" index="0"]
+margin_top = 11.2
+margin_bottom = 61.2
+
+[node name="Ability1" parent="UI/Main/CenterContainer2/VBoxContainer/Abilities/HBoxContainer" index="0"]
+custom_styles/panel = SubResource( 4 )
+icon = SubResource( 5 )
+
+[node name="Ability2" parent="UI/Main/CenterContainer2/VBoxContainer/Abilities/HBoxContainer" index="1"]
+custom_styles/panel = SubResource( 6 )
+icon = SubResource( 7 )
+
+[node name="Tag" parent="." index="6"]
+position = Vector2( 0, 38 )
+
+[node name="Death" parent="." index="7"]
+stream = ExtResource( 3 )
+
+[node name="Spawn" parent="." index="8"]
+stream = ExtResource( 4 )
+
+[node name="Win" parent="." index="9"]
+stream = ExtResource( 4 )
+
+[node name="Teleport" type="AudioStreamPlayer2D" parent="." index="13"]
+stream = ExtResource( 5 )
+
+[node name="LampNoise" type="AudioStreamPlayer2D" parent="." index="14"]
+stream = ExtResource( 11 )
+
+[node name="CarpetNoise" type="AudioStreamPlayer2D" parent="." index="15"]
+stream = ExtResource( 10 )

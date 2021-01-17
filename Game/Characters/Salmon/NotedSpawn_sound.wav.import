@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/NotedSpawn_sound.wav-2804c02dcb4515f56e8e7d451ac7f5f1.sample"
+
+[deps]
+
+source_file="res://Game/Characters/Salmon/NotedSpawn_sound.wav"
+dest_files=[ "res://.import/NotedSpawn_sound.wav-2804c02dcb4515f56e8e7d451ac7f5f1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
