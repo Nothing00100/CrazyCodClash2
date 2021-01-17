@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Screens/Menu/X.gd" type="Script" id=1]
+[ext_resource path="res://Misc/Themes/Main.tres" type="Theme" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.976471, 0.756863, 0.168627, 1 )
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/UpArrow.png-0038a07c138c27edc05ad0bd8eca78c4.stex"
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.24068
+margin_right = 3.24068
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = 232.0
+margin_top = 66.0
+margin_right = 732.0
+margin_bottom = 338.0
+bbcode_enabled = true
+bbcode_text = "
+                       [wave amp=200 freq=3][rainbow freq=0.5 sat=3 val=20]sWordy is Cool*[/rainbow][/wave]
+
+
+                  [tornado radius=50 freq=4]Click below the '2'[/tornado]"
+text = "
+                       sWordy is Cool*
+
+
+                  Click below the '2'"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+margin_left = -89.0
+margin_top = -102.0
+margin_right = 11778.0
+margin_bottom = 7105.0
+rect_scale = Vector2( 1.01718, 1 )
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = -5.0
+margin_top = -2.0
+margin_right = 64.0
+margin_bottom = 67.0
+action_mode = 0
+icon = SubResource( 2 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 658.068
+margin_top = 371.258
+margin_right = 764.068
+margin_bottom = 418.258
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[url=https://www.youtube.com/watch?v=oSx8poNkOBg][color=aqua]Funny[/color][/url]"
+text = "Funny"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+margin_left = 101.317
+margin_top = 277.257
+margin_right = 600.317
+margin_bottom = 528.257
+text = "Made by:
+Mostly Iddmeister
+A bit of sWordy
+And Spreehox was there too.
+"
+scroll_active = false
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="meta_clicked" from="RichTextLabel" to="." method="_on_RichTextLabel_meta_clicked"]
